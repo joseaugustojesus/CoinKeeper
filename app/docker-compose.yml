@@ -1,13 +1,14 @@
 services:
   php-apache:
-    container_name: php8.0.1
-    build: ./../docker/php8.0.1
+    container_name: php
+    build: ../docker/php
     ports:
       - "3000:80"
     volumes:
       - ./:/var/www/html
-      - ./../docker/php8.0.1/config/jit.ini:/usr/local/etc/php/conf.d/jit.ini
-      - ./../docker/php8.0.1/config/timezone.ini:/usr/local/etc/php/conf.d/timezone.ini
+      - ../docker/php/config/jit.ini:/usr/local/etc/php/conf.d/jit.ini
+      - ../docker/php/config/timezone.ini:/usr/local/etc/php/conf.d/timezone.ini
+      - ../docker/apache/rewrite.load:/etc/apache2/mods-enabled/rewrite.load
   db:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password
@@ -15,7 +16,7 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
     volumes:
-      - "./../docker/mysql:/var/lib/mysql"
+      - "../docker/mysql:/var/lib/mysql"
   adminer:
     image: adminer
     restart: always
