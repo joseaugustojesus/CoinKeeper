@@ -2,10 +2,13 @@
 
 use src\interfaces\NexusRepositoryInterface;
 use src\interfaces\NotificationInterface;
+use src\interfaces\repositories\UserRepositoryInterface;
 use src\interfaces\requests\UserStoreRequestInterface;
+use src\interfaces\services\UserServiceInterface;
 use src\repositories\NexusRepository;
-
+use src\repositories\UserRepository;
 use src\requests\user\UserStoreRequest;
+use src\services\UserService;
 use src\support\Notification;
 
 use function DI\autowire;
@@ -20,6 +23,8 @@ $containerBuilder->addDefinitions(
         NotificationInterface::class => autowire(Notification::class),
 
         UserStoreRequestInterface::class => autowire(UserStoreRequest::class),
+        UserServiceInterface::class => autowire(UserService::class),
+        UserRepositoryInterface::class => autowire(UserRepository::class),
     ]
 );
 

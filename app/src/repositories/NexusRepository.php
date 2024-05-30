@@ -27,6 +27,7 @@ class NexusRepository implements NexusRepositoryInterface
         $this->db = (new Database)->connect();
     }
 
+
     /**
      * @param string $table
      * @return self
@@ -208,7 +209,7 @@ class NexusRepository implements NexusRepositoryInterface
                 }
             }
         } catch (PDOException $e) {
-            return false;
+            throw $e;
         }
     }
 

@@ -3,11 +3,16 @@
 namespace src\controllers;
 
 use src\interfaces\requests\UserStoreRequestInterface;
+use src\interfaces\services\UserServiceInterface;
 use src\support\View;
 
 class UserController
 {
 
+    function __construct(
+        private UserServiceInterface $userServiceInterface
+    ) {
+    }
     /**
      * @return View
      */
@@ -19,6 +24,6 @@ class UserController
 
     function store(UserStoreRequestInterface $request)
     {
-        dd("Data received:", $request->get());
+        $this->userServiceInterface->store($request);
     }
 }

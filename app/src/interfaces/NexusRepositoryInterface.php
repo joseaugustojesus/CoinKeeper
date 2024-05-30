@@ -191,4 +191,5 @@ interface NexusRepositoryInterface
      * @return self
      */
     function fullJoin(string $table, string $firstColumn, string $operation, string $secondColumn): self;
+
 }
