@@ -12,6 +12,6 @@ $router = new Router;
 
 $router->get("/", ExampleController::class, "example", [need2BeLoggedIn::class]);
 $router->get("/account/new", UserController::class, "new", [need2BeLoggedIn::class]);
-
+$router->post("/account/new", UserController::class, "store");
 
 return $router->init();

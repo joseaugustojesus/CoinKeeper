@@ -2,12 +2,23 @@
 
 namespace src\controllers;
 
+use src\interfaces\requests\UserStoreRequestInterface;
 use src\support\View;
 
 class UserController
 {
-    function new()
+
+    /**
+     * @return View
+     */
+    function new(): View
     {
         return View::render("out.user_new");
+    }
+
+
+    function store(UserStoreRequestInterface $request)
+    {
+        dd("Data received:", $request->get());
     }
 }
