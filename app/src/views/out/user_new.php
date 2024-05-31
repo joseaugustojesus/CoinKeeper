@@ -74,16 +74,16 @@
                         <form action="<?= route("/account/new") ?>" method="POST">
                             <div class="row gy-3 gy-md-4 overflow-hidden">
                                 <div class="col-12">
-                                    <label for="email" class="form-label">E-mail <span class="text-danger">*</span></label>
+                                    <label for="email" class="form-label fw-bold">E-mail <span class="text-danger">*</span></label>
                                     <input type="email" class="form-control" name="email" id="email" placeholder="user@coinkeeper.com.br" required>
                                     <small class="text-muted">Relaxa, não vamos te mandar spam 😉</small>
                                 </div>
                                 <div class="col-12">
-                                    <label for="name" class="form-label">Usuário <span class="text-danger">*</span></label>
+                                    <label for="name" class="form-label fw-bold">Usuário <span class="text-danger">*</span></label>
                                     <input type="text" class="form-control" name="name" id="name" placeholder="coin.keeper" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="password" class="form-label">Senha <small>(Escolha uma senha forte 💪)</small> <span class="text-danger">*</span></label>
+                                    <label for="password" class="form-label fw-bold">Senha <small>(Escolha uma senha forte 💪)</small> <span class="text-danger">*</span></label>
                                     <input type="password" class="form-control" name="password" id="password" value="" required placeholder="********">
                                 </div>
 

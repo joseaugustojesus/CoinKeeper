@@ -71,11 +71,11 @@
                         <form action="#!">
                             <div class="row gy-3 gy-md-4 overflow-hidden">
                                 <div class="col-12">
-                                    <label for="username" class="form-label">Usuário <span class="text-danger">*</span></label>
+                                    <label for="username" class="form-label fw-bold">Usuário <span class="text-danger">*</span></label>
                                     <input type="username" class="form-control" name="username" id="username" placeholder="coin.keeper" required>
                                 </div>
                                 <div class="col-12">
-                                    <label for="password" class="form-label">Senha <small>(Não erre mais de 3 vezes 😉)</small> <span class="text-danger">*</span></label>
+                                    <label for="password" class="form-label fw-bold">Senha <small>(Não erre mais de 3 vezes 😉)</small> <span class="text-danger">*</span></label>
                                     <input type="password" class="form-control" name="password" id="password" value="" required placeholder="********">
                                 </div>
 
