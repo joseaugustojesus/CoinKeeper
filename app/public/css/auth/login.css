@@ -1,3 +1,11 @@
+:root {
+  --light: #ffffff;
+  --success: #188918;
+  --error: #9b1b12;
+  --warning: #bf8705;
+  --info: #008084;
+}
+
 .bg-money {
   background-color: #4aba03;
   color: #fff;

@@ -4,6 +4,7 @@ namespace src\services;
 
 use Exception;
 use PDOException;
+use src\interfaces\NotificationInterface;
 use src\interfaces\repositories\UserRepositoryInterface;
 use src\interfaces\requests\UserStoreRequestInterface;
 use src\interfaces\services\UserServiceInterface;
@@ -11,7 +12,8 @@ use src\interfaces\services\UserServiceInterface;
 class UserService implements UserServiceInterface
 {
     function __construct(
-        private UserRepositoryInterface $userRepositoryInterface
+        private UserRepositoryInterface $userRepositoryInterface,
+        private NotificationInterface $notificationInterface
     ) {
     }
 
@@ -19,7 +21,7 @@ class UserService implements UserServiceInterface
     {
         try {
             $this->userRepositoryInterface->store($request->get());
-            dd("with success");
+            $this->notificationInterface->success("Seu usuário foi criado com sucesso");
         } catch (PDOException $e) {
             dd($e->getMessage());
         }

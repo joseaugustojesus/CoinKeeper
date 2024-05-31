@@ -9,7 +9,9 @@
 
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-3/assets/css/login-3.css">
+    <link rel="stylesheet" href="<?= css_directory("/notification.css") ?>">
     <link rel="stylesheet" href="<?= css_directory("/auth/login.css"); ?>">
+
 </head>
 
 <style>
@@ -48,6 +50,7 @@
 
 <body>
 
+    <ul class="notificationsToasts"></ul>
 
     <section class="p-3 p-md-4 p-xl-5" id="login">
         <div class="container">
@@ -106,5 +109,10 @@
     </section>
 
 </body>
+
+<script src="<?= js_directory("/init.js") ?>"></script>
+<script src="<?= js_directory("/notification.js") ?>"></script>
+
+<?php viewingNotifications(); ?>
 
 </html>
