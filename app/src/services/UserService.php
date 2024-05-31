@@ -2,7 +2,7 @@
 
 namespace src\services;
 
-use Exception;
+
 use PDOException;
 use src\interfaces\NotificationInterface;
 use src\interfaces\repositories\UserRepositoryInterface;
@@ -21,7 +21,7 @@ class UserService implements UserServiceInterface
     {
         try {
             $this->userRepositoryInterface->store($request->get());
-            $this->notificationInterface->success("Seu usuário foi criado com sucesso");
+            $this->notificationInterface->success("Seu usuário foi criado com sucesso. <a href=\'#\'>Bora poupar! 🚀</a>");
         } catch (PDOException $e) {
             dd($e->getMessage());
         }
