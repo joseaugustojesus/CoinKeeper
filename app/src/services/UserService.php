@@ -20,7 +20,7 @@ class UserService implements UserServiceInterface
     function store(UserStoreRequestInterface $request)
     {
         try {
-            $this->userRepositoryInterface->store($request->get());
+            $this->userRepositoryInterface->store($request->getDataNewUser());
             $this->notificationInterface->success("Seu usuário foi criado com sucesso. <a href=\'#\'>Bora poupar! 🚀</a>");
         } catch (PDOException $e) {
             dd($e->getMessage());

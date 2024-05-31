@@ -13,4 +13,9 @@ interface UserStoreRequestInterface
      * @return array<mixed, mixed>|string
      */
     public function get(?string $key = null): array|string;
+
+    /**
+     * @return array<string, mixed>
+     */
+    function getDataNewUser(): array;
 }
