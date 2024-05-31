@@ -8,8 +8,7 @@ use Ramsey\Uuid\Uuid;
 use src\database\Database;
 use src\database\Model;
 use src\interfaces\NexusRepositoryInterface;
-
-
+use stdClass;
 
 class NexusRepository implements NexusRepositoryInterface
 {
@@ -174,9 +173,9 @@ class NexusRepository implements NexusRepositoryInterface
     }
 
     /**
-     * @return object|array<int, object>|bool
+     * @return stdClass|array<int, stdClass>|bool
      */
-    function make(): object|array|bool
+    function make(): stdClass|array|bool
     {
         try {
             $firstWord = strstr($this->queryString, ' ', true);
@@ -184,10 +183,17 @@ class NexusRepository implements NexusRepositoryInterface
                 return false;
             }
             $isSelect = strtolower(trim($firstWord)) === "select";
+            $isInsertOrUpdate =
+                (strtolower(trim($firstWord)) === "insert")
+                || strtolower(trim($firstWord)) === "update";
 
             if (!$isSelect) {
                 $stmt = $this->db->prepare($this->queryString);
-                return $stmt->execute($this->bind ?? []);
+                $executed = $stmt->execute($this->bind ?? []);
+                if ($isInsertOrUpdate) {
+                    return (object) $this->bind;
+                }
+                return $executed;
             } else {
                 if ($this->selectIsOne)
                     $this->limit();
