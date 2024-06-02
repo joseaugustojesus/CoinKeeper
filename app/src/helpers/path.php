@@ -10,7 +10,7 @@
  */
 function css_directory($path = '')
 {
-    return $_ENV["APP_URL"] . "/public/css{$path}";
+    return $_ENV["APP_URL"] . "/css{$path}";
 }
 
 /**
@@ -21,5 +21,5 @@ function css_directory($path = '')
  */
 function js_directory($path = '')
 {
-    return $_ENV["APP_URL"]  . "/public/js{$path}";
+    return $_ENV["APP_URL"]  . "/js{$path}";
 }
