@@ -15,6 +15,15 @@ class UserController
         private UserServiceInterface $userServiceInterface
     ) {
     }
+
+    /**
+     * @return View
+     */
+    function login(): View
+    {
+        return View::render("out.user.login");
+    }
+
     /**
      * @return View
      */
