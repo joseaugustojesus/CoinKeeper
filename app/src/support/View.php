@@ -21,8 +21,7 @@ final class View
     {
         $viewHandled = str_replace(".", "/", $view);
         self::certifyIfViewExist($viewHandled);
-
-        $platesEngine = new Engine('./src/views');
+        $platesEngine = new Engine('./../src/views');
         $platesEngine->addData($data);
         self::$isString = $platesEngine->render(
             $viewHandled
@@ -37,7 +36,7 @@ final class View
      */
     private static function certifyIfViewExist(string $view): void
     {
-        $viewPath = "./src/views/{$view}.php";
+        $viewPath = "../src/views/{$view}.php";
         if (!file_exists($viewPath))
             throw new Exception("A view ({$view}) não existe");
     }
