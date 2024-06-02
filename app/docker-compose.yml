@@ -3,7 +3,7 @@ services:
     container_name: php
     build: ../docker/php
     ports:
-      - "3000:80"
+      - "8000:80"
     volumes:
       - ./:/var/www/html
       - ../docker/php/config/jit.ini:/usr/local/etc/php/conf.d/jit.ini
@@ -17,6 +17,8 @@ services:
       MYSQL_ROOT_PASSWORD: secret
     volumes:
       - "../docker/mysql:/var/lib/mysql"
+    ports:
+      - "3306:3306"
   adminer:
     image: adminer
     restart: always
