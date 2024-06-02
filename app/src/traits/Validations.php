@@ -2,12 +2,37 @@
 
 namespace src\traits;
 
+use src\database\Database;
 use src\support\IsWrong;
 use src\support\Request;
 
 
 trait Validations
 {
+
+
+    /**
+     * @param string $field
+     * @param string $tableName
+     * @return string|null
+     */
+    function unique(string $field, string $tableName): string|null
+    {
+        $input = Request::input($field);
+        $db = (new Database)->connect();
+        $select = "SELECT id FROM {$tableName} WHERE {$field} = :{$field}";
+        $stmt = $db->prepare($select);
+        $stmt->execute([$field => $input]);
+        $result = $stmt->fetch(\PDO::FETCH_OBJ);
+
+        if ($result) {
+            if ($_ENV["LANG"] === 'en') IsWrong::set($field, "This field already exists");
+            else if ($_ENV["LANG"] === 'pt-br') IsWrong::set($field, "O valor está em uso");
+            return null;
+        }
+        return strip_tags($field, '<p>');
+    }
+
 
     /**
      * Responsible for checking if the email provided is valid
@@ -17,7 +42,7 @@ trait Validations
     public function email(string $field): ?string
     {
         $input = Request::input($field);
-        if(is_string($input)){
+        if (is_string($input)) {
             $message = '';
             if (!filter_input(INPUT_POST, $field, FILTER_VALIDATE_EMAIL)) {
                 if ($_ENV["LANG"] === 'en') $message = "The email provided is not valid";
@@ -25,8 +50,8 @@ trait Validations
                 IsWrong::set($field, $message);
                 return null;
             }
-    
-            return strip_tags($input, '<p>'); 
+
+            return strip_tags($input, '<p>');
         }
         return null;
     }
