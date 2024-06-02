@@ -9,10 +9,15 @@ use src\requests\Request;
 class UserStoreRequest extends Request implements UserStoreRequestInterface
 {
     protected array $rules = [
-        "email" => "required",
-        "name" => "required",
+        "email" => "required|unique:users",
+        "name" => "required|unique:users",
         "password" => "required",
     ];
+
+    function __construct()
+    {
+        $this->execute();
+    }
 
     /**
      * @return array<string, mixed>

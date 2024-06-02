@@ -9,6 +9,7 @@
 
     <link rel="stylesheet" href="https://unpkg.com/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://unpkg.com/bs-brain@2.0.4/components/logins/login-3/assets/css/login-3.css">
+    <link rel="stylesheet" href="<?= css_directory("/global.css") ?>">
     <link rel="stylesheet" href="<?= css_directory("/notification.css") ?>">
     <link rel="stylesheet" href="<?= css_directory("/auth/login.css"); ?>">
 
@@ -75,12 +76,15 @@
                             <div class="row gy-3 gy-md-4 overflow-hidden">
                                 <div class="col-12">
                                     <label for="email" class="form-label fw-bold">E-mail <span class="text-danger">*</span></label>
-                                    <input type="email" class="form-control" name="email" id="email" placeholder="user@coinkeeper.com.br" required>
-                                    <small class="text-muted">Relaxa, não vamos te mandar spam 😉</small>
+                                    <input type="email" class="form-control <?= applyWrong("email") ?>" name="email" id="email" placeholder="user@coinkeeper.com.br" required value="<?= old("email"); ?>">
+                                    <small class="text-muted"><?= isWrongText("email") ?: "Relaxa, não vamos te mandar spam 😉" ?></small>
                                 </div>
                                 <div class="col-12">
                                     <label for="name" class="form-label fw-bold">Usuário <span class="text-danger">*</span></label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="coin.keeper" required>
+                                    <input type="text" class="form-control <?= applyWrong("name") ?>" name="name" id="name" placeholder="coin.keeper" required value="<?= old("name") ?>">
+                                    <?php if (isWrong("name")) { ?>
+                                        <small class="text-muted"><?= isWrongText("name"); ?></small>
+                                    <?php } ?>
                                 </div>
                                 <div class="col-12">
                                     <label for="password" class="form-label fw-bold">Senha <small>(Escolha uma senha forte 💪)</small> <span class="text-danger">*</span></label>
@@ -113,6 +117,8 @@
 <script src="<?= js_directory("/init.js") ?>"></script>
 <script src="<?= js_directory("/notification.js") ?>"></script>
 
-<?php viewingNotifications(); ?>
+<?php
+viewingNotifications();
+forgetSessions(["old", "userCreated", "isWrong"]) ?>
 
 </html>
