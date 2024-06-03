@@ -94,7 +94,7 @@
                                 <hr class="mt-5 mb-4 border-secondary-subtle">
                                 <div class="text-end">
                                     <p class="text-secondary">Precisa recuperar sua senha?</p>
-                                    <a href="#!" class="link-secondary text-decoration-none">Clica aqui que nós te ajudamos 🚀</a>
+                                    <a href="<?= route("/account/password/reset") ?>" class="link-secondary text-decoration-none">Clica aqui que nós te ajudamos 🚀</a>
                                 </div>
                             </div>
                         </div>
