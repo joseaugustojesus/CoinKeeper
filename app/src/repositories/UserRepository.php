@@ -21,4 +21,19 @@ class UserRepository implements UserRepositoryInterface
             ->values($data)
             ->make();
     }
+
+    function byColumnsEqualsAnd(array $data): bool|stdClass
+    {
+        $repository = $this->nexusRepositoryInterface->setTable("users")->selectOne();
+
+        $idx = 0;
+        foreach ($data as $column => $value) {
+            if ($idx === 0)
+                $repository->where($column, "=", $value);
+            else
+                $repository->andWhere($column, "=", $value);
+            $idx++;
+        }
+        return $repository->make();
+    }
 }

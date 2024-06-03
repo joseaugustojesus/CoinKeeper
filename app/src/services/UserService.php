@@ -2,12 +2,14 @@
 
 namespace src\services;
 
-
+use Exception;
 use PDOException;
 use src\interfaces\NotificationInterface;
 use src\interfaces\repositories\UserRepositoryInterface;
 use src\interfaces\requests\UserStoreRequestInterface;
 use src\interfaces\services\UserServiceInterface;
+use src\support\Json;
+use src\support\Request;
 use src\support\Sessions;
 
 class UserService implements UserServiceInterface
@@ -26,6 +28,32 @@ class UserService implements UserServiceInterface
             $this->notificationInterface->success("Seu usuário foi criado com sucesso. <a href=\'#\'>Bora poupar! 🚀</a>");
         } catch (PDOException $e) {
             dd($e->getMessage());
+        }
+    }
+
+    function preflight(): Json
+    {
+        try {
+            $secret = $this->userRepositoryInterface->byColumnsEqualsAnd(
+                Request::getQuery()
+            );
+            if ($secret) {
+                Sessions::set("passwordResetSecret", $secret->secret, true);
+                return Json::return([
+                    "found" => true,
+                    "message" => "Secret validado com sucesso",
+                    "error" => false,
+                    "redirect" => route("/account/password/reset/confirm")
+                ], 200);
+            } else {
+                return Json::return([
+                    "found" => false,
+                    "message" => "Os dados não estão corretos",
+                    "error" => true
+                ], 404);
+            }
+        } catch (Exception $e) {
+            dd("error: " . $e->getMessage());
         }
     }
 }
