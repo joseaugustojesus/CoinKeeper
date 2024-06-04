@@ -22,6 +22,16 @@ class UserRepository implements UserRepositoryInterface
             ->make();
     }
 
+
+    function update(array $data, string $id): bool|stdClass
+    {
+        return $this->nexusRepositoryInterface
+            ->setTable("users")
+            ->update($data)
+            ->where("id", "=", $id)
+            ->make();
+    }
+
     function byColumnsEqualsAnd(array $data): bool|stdClass
     {
         $repository = $this->nexusRepositoryInterface->setTable("users")->selectOne();

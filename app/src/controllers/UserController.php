@@ -54,14 +54,14 @@ class UserController
     {
         return View::render("out.user.password");
     }
-
-
+    
+    
     function preflight(): Json
     {
         return $this->userServiceInterface->preflight();
     }
-
-
+    
+    
     function passwordConfirm()
     {
         return View::render("out.user.password_confirm");
@@ -69,6 +69,7 @@ class UserController
 
     function passwordModify(UserPasswordModifyRequestInterface $request)
     {
-        dd($_POST, $request->get());
+        $this->userServiceInterface->passwordUpdate($request);
+        return Redirect::to("/");
     }
 }

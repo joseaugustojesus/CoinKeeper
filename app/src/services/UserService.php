@@ -6,6 +6,7 @@ use Exception;
 use PDOException;
 use src\interfaces\NotificationInterface;
 use src\interfaces\repositories\UserRepositoryInterface;
+use src\interfaces\requests\UserPasswordModifyRequestInterface;
 use src\interfaces\requests\UserStoreRequestInterface;
 use src\interfaces\services\UserServiceInterface;
 use src\support\Json;
@@ -38,7 +39,7 @@ class UserService implements UserServiceInterface
                 Request::getQuery()
             );
             if ($secret) {
-                Sessions::set("passwordResetSecret", $secret->secret, true);
+                Sessions::set("passwordResetSecret", $secret, true);
                 return Json::return([
                     "found" => true,
                     "message" => "Secret validado com sucesso",
@@ -52,6 +53,19 @@ class UserService implements UserServiceInterface
                     "error" => true
                 ], 404);
             }
+        } catch (Exception $e) {
+            dd("error: " . $e->getMessage());
+        }
+    }
+
+    function passwordUpdate(UserPasswordModifyRequestInterface $request)
+    {
+        try {
+            $user = Sessions::get("passwordResetSecret");
+            $this->userRepositoryInterface->update([
+                "password" => password_hash($request->get("password"), PASSWORD_DEFAULT)
+            ], $user->id);
+            $this->notificationInterface->success("A senha foi alterada com sucesso");
         } catch (Exception $e) {
             dd("error: " . $e->getMessage());
         }
