@@ -3,11 +3,13 @@
 use src\interfaces\NexusRepositoryInterface;
 use src\interfaces\NotificationInterface;
 use src\interfaces\repositories\UserRepositoryInterface;
+use src\interfaces\requests\LoginRequestInterface;
 use src\interfaces\requests\UserPasswordModifyRequestInterface;
 use src\interfaces\requests\UserStoreRequestInterface;
 use src\interfaces\services\UserServiceInterface;
 use src\repositories\NexusRepository;
 use src\repositories\UserRepository;
+use src\requests\user\LoginRequest;
 use src\requests\user\UserPasswordModifyRequest;
 use src\requests\user\UserStoreRequest;
 use src\services\UserService;
@@ -28,6 +30,8 @@ $containerBuilder->addDefinitions(
         UserServiceInterface::class => autowire(UserService::class),
         UserRepositoryInterface::class => autowire(UserRepository::class),
         UserPasswordModifyRequestInterface::class => autowire(UserPasswordModifyRequest::class),
+        LoginRequestInterface::class => autowire(LoginRequest::class),
+        
     ]
 );
 

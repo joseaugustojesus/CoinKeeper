@@ -2,9 +2,11 @@
 
 namespace src\controllers;
 
+use src\interfaces\requests\LoginRequestInterface;
 use src\interfaces\requests\UserPasswordModifyRequestInterface;
 use src\interfaces\requests\UserStoreRequestInterface;
 use src\interfaces\services\UserServiceInterface;
+use src\requests\user\LoginRequest;
 use src\support\Json;
 use src\support\Redirect;
 use src\support\Sessions;
@@ -54,14 +56,14 @@ class UserController
     {
         return View::render("out.user.password");
     }
-    
-    
+
+
     function preflight(): Json
     {
         return $this->userServiceInterface->preflight();
     }
-    
-    
+
+
     function passwordConfirm()
     {
         return View::render("out.user.password_confirm");
@@ -71,5 +73,10 @@ class UserController
     {
         $this->userServiceInterface->passwordUpdate($request);
         return Redirect::to("/");
+    }
+
+    function loginStore(LoginRequestInterface $request)
+    {
+        dd($_POST, $request->get(), 1);
     }
 }

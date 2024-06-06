@@ -10,6 +10,7 @@ use src\middlewares\UserCreated;
 $router = new Router;
 
 $router->get("/", UserController::class, "login");
+$router->post("/login", UserController::class, "loginStore");
 $router->get("/account/new", UserController::class, "new");
 $router->post("/account/new", UserController::class, "store");
 $router->get("/account/new/successfully", UserController::class, "newSuccessfully", [UserCreated::class]);
