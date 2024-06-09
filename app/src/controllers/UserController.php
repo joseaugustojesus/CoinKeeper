@@ -77,6 +77,7 @@ class UserController
 
     function loginStore(LoginRequestInterface $request)
     {
-        dd($_POST, $request->get(), 1);
+        $redirect = $this->userServiceInterface->login($request);
+        return Redirect::to($redirect);
     }
 }

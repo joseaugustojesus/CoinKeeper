@@ -4,8 +4,10 @@ namespace src\services;
 
 use Exception;
 use PDOException;
+use src\database\models\Example;
 use src\interfaces\NotificationInterface;
 use src\interfaces\repositories\UserRepositoryInterface;
+use src\interfaces\requests\LoginRequestInterface;
 use src\interfaces\requests\UserPasswordModifyRequestInterface;
 use src\interfaces\requests\UserStoreRequestInterface;
 use src\interfaces\services\UserServiceInterface;
@@ -68,6 +70,21 @@ class UserService implements UserServiceInterface
             $this->notificationInterface->success("A senha foi alterada com sucesso");
         } catch (Exception $e) {
             dd("error: " . $e->getMessage());
+        }
+    }
+
+
+    function login(LoginRequestInterface $request): string
+    {
+        try {
+            $user = $this->userRepositoryInterface->getByUsername($request->get("username"));
+            if (!$user || !password_verify($request->get("password"), $user->password))
+                throw new Exception("Não foi possível encontrar os dados do usuário informado", 404);
+            $this->notificationInterface->success("Usuário logado com sucesso 🎉");
+        } catch (Exception $e) {
+            $this->notificationInterface->error($e->getMessage());
+        } finally {
+            return "/";
         }
     }
 }

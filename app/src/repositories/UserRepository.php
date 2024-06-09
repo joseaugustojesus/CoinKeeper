@@ -46,4 +46,13 @@ class UserRepository implements UserRepositoryInterface
         }
         return $repository->make();
     }
+
+    function getByUsername(string $username): bool|stdClass
+    {
+        return $this->nexusRepositoryInterface
+            ->setTable("users")
+            ->selectOne()
+            ->where("name", "=", $username)
+            ->make();
+    }
 }
