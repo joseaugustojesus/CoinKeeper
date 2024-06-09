@@ -26,6 +26,7 @@ class UserStoreRequest extends Request implements UserStoreRequestInterface
     {
         $data = $this->get();
         $data["secret"] = Uuid::uuid4()->toString();
+        $data["password"] = password_hash($data["password"], PASSWORD_DEFAULT);
         return $data;
     }
 }
