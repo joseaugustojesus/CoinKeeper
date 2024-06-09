@@ -8,7 +8,6 @@
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <link rel="stylesheet" href="<?= css_directory("/bs5.css") ?>">
-    <link rel="stylesheet" href="<?= css_directory("/auth/login.css"); ?>">
     <link rel="stylesheet" href="<?= css_directory("/notification.css") ?>">
     <link rel="stylesheet" href="<?= css_directory("/out/base.css"); ?>">
 </head>
@@ -29,6 +28,7 @@
 
 <script src="<?= js_directory("/init.js") ?>"></script>
 <script src="<?= js_directory("/notification.js") ?>"></script>
+<script src="<?= js_directory("/axios.js") ?>"></script>
 
 <?php viewingNotifications(); ?>
 
