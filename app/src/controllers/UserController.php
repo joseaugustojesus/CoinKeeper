@@ -6,7 +6,6 @@ use src\interfaces\requests\LoginRequestInterface;
 use src\interfaces\requests\UserPasswordModifyRequestInterface;
 use src\interfaces\requests\UserStoreRequestInterface;
 use src\interfaces\services\UserServiceInterface;
-use src\requests\user\LoginRequest;
 use src\support\Json;
 use src\support\Redirect;
 use src\support\Sessions;
