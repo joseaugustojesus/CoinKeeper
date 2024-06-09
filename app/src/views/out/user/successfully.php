@@ -1,5 +1,8 @@
 <?php $this->layout("out/base", [
-    "ck_title" => "Senha alterada com sucesso"
+    "ck_title" => "Senha alterada com sucesso",
+    "js" => [
+        js_directory("/out/successfully.js")
+    ]
 ]) ?>
 
 <div class="row">

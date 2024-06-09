@@ -19,7 +19,7 @@
 
     <section class="p-3 p-md-4 p-xl-5" id="login">
         <div class="container">
-           <?= $this->section("content"); ?>
+            <?= $this->section("content"); ?>
         </div>
     </section>
 
@@ -29,6 +29,10 @@
 <script src="<?= js_directory("/init.js") ?>"></script>
 <script src="<?= js_directory("/notification.js") ?>"></script>
 <script src="<?= js_directory("/axios.js") ?>"></script>
+
+<?php foreach ($js as $js_) { ?>
+    <script src="<?= $js_ ?>"></script>
+<?php } ?>
 
 <?php viewingNotifications(); ?>
 

@@ -2,7 +2,10 @@
 
 
 <?php $this->layout("out/base", [
-    "ck_title" => "Confirmação de senha"
+    "ck_title" => "Confirmação de senha",
+    "js" => [
+        js_directory("/out/password_confirm.js")
+    ]
 ]) ?>
 
 <div class="row">
