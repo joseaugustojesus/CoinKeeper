@@ -38,13 +38,17 @@ class UserController
     }
 
 
-    function store(UserStoreRequestInterface $request)
+    /**
+     * @param UserStoreRequestInterface $request
+     * @return Redirect
+     */
+    function store(UserStoreRequestInterface $request): Redirect
     {
         $this->userServiceInterface->store($request);
         return Redirect::to("/account/new/successfully");
     }
 
-    function newSuccessfully()
+    function newSuccessfully(): View
     {
         return View::render("out.user.successfully", [
             "user" => Sessions::get("userCreated")
@@ -52,7 +56,7 @@ class UserController
     }
 
 
-    function passwordReset()
+    function passwordReset(): View
     {
         return View::render("out.user.password");
     }
@@ -64,18 +68,26 @@ class UserController
     }
 
 
-    function passwordConfirm()
+    function passwordConfirm(): View
     {
         return View::render("out.user.password_confirm");
     }
 
-    function passwordModify(UserPasswordModifyRequestInterface $request)
+    /**
+     * @param UserPasswordModifyRequestInterface $request
+     * @return Redirect
+     */
+    function passwordModify(UserPasswordModifyRequestInterface $request): Redirect
     {
         $this->userServiceInterface->passwordUpdate($request);
         return Redirect::to("/");
     }
 
-    function loginStore(LoginRequestInterface $request)
+    /**
+     * @param LoginRequestInterface $request
+     * @return Redirect
+     */
+    function loginStore(LoginRequestInterface $request): Redirect
     {
         $redirect = $this->userServiceInterface->login($request);
         return Redirect::to($redirect);

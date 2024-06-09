@@ -23,7 +23,10 @@ class UserService implements UserServiceInterface
     ) {
     }
 
-    function store(UserStoreRequestInterface $request)
+    /**
+     * @param UserStoreRequestInterface $request
+     */
+    function store(UserStoreRequestInterface $request): void
     {
         try {
             $userCreated = $this->userRepositoryInterface->store($request->getDataNewUser());
@@ -60,7 +63,10 @@ class UserService implements UserServiceInterface
         }
     }
 
-    function passwordUpdate(UserPasswordModifyRequestInterface $request)
+    /**
+     * @param UserPasswordModifyRequestInterface $request
+     */
+    function passwordUpdate(UserPasswordModifyRequestInterface $request): void
     {
         try {
             $user = Sessions::get("passwordResetSecret");
@@ -83,8 +89,8 @@ class UserService implements UserServiceInterface
             $this->notificationInterface->success("Usuário logado com sucesso 🎉");
         } catch (Exception $e) {
             $this->notificationInterface->error($e->getMessage());
-        } finally {
-            return "/";
-        }
+        } 
+
+        return "/";
     }
 }

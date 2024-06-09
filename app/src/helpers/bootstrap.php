@@ -10,8 +10,8 @@ function timezoneDefault(): void
 function setDebugAsActive(): void
 {
     if ($_ENV["DEBUG_ACTIVE"]) {
-        ini_set('display_errors', 1);
-        ini_set('display_startup_errors', 1);
+        ini_set('display_errors', "true");
+        ini_set('display_startup_errors', "true");
         error_reporting(E_ALL);
     }
 }

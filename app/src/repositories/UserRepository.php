@@ -14,6 +14,10 @@ class UserRepository implements UserRepositoryInterface
     }
 
 
+    /**
+     * @param array<string, mixed> $data
+     * @return bool|stdClass
+     */
     function store(array $data): bool|stdClass
     {
         return $this->nexusRepositoryInterface
@@ -23,6 +27,11 @@ class UserRepository implements UserRepositoryInterface
     }
 
 
+    /**
+     * @param array<string, mixed> $data
+     * @param string $id
+     * @return bool|stdClass
+     */
     function update(array $data, string $id): bool|stdClass
     {
         return $this->nexusRepositoryInterface
@@ -32,6 +41,10 @@ class UserRepository implements UserRepositoryInterface
             ->make();
     }
 
+    /**
+     * @param array<string, mixed> $data
+     * @return bool|stdClass
+     */
     function byColumnsEqualsAnd(array $data): bool|stdClass
     {
         $repository = $this->nexusRepositoryInterface->setTable("users")->selectOne();
@@ -47,6 +60,10 @@ class UserRepository implements UserRepositoryInterface
         return $repository->make();
     }
 
+    /**
+     * @param string $username
+     * @return bool|stdClass
+     */
     function getByUsername(string $username): bool|stdClass
     {
         return $this->nexusRepositoryInterface

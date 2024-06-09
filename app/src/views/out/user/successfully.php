@@ -1,3 +1,8 @@
+<?php
+
+/** @var stdClass $user */
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 

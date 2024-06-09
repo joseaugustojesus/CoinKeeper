@@ -9,9 +9,18 @@ use src\support\Json;
 
 interface UserServiceInterface
 {
- 
-    function store(UserStoreRequestInterface $request);
+
+    /**
+     * @param UserStoreRequestInterface $request
+     */
+    function store(UserStoreRequestInterface $request): void;
+    
     function preflight(): Json;
-    function passwordUpdate(UserPasswordModifyRequestInterface $request);
+    /**
+     * @param UserPasswordModifyRequestInterface $request
+     */
+    function passwordUpdate(UserPasswordModifyRequestInterface $request): void;
+
+
     function login(LoginRequestInterface $request): string;
 }
