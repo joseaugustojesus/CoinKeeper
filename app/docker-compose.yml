@@ -10,6 +10,10 @@ services:
       - ../docker/php/config/timezone.ini:/usr/local/etc/php/conf.d/timezone.ini
       - ../docker/apache/rewrite.load:/etc/apache2/mods-enabled/rewrite.load
       - ../docker/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    deploy:
+      resources:
+        limits:
+          memory: 2G   # Define o limite de memória para 2GB
   db:
     image: mysql:8.0
     command: --default-authentication-plugin=mysql_native_password

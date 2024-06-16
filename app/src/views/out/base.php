@@ -30,8 +30,10 @@
 <script src="<?= js_directory("/notification.js") ?>"></script>
 <script src="<?= js_directory("/axios.js") ?>"></script>
 
-<?php foreach ($js as $js_) { ?>
-    <script src="<?= $js_ ?>"></script>
+<?php if (!empty($js)) { ?>
+    <?php foreach ($js as $js_) { ?>
+        <script src="<?= $js_ ?>"></script>
+    <?php } ?>
 <?php } ?>
 
 <?php viewingNotifications(); ?>

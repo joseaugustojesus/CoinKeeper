@@ -25,7 +25,7 @@ class UserController
      */
     function login(): View
     {
-        return View::render("out.user.login");
+        return View::render("out.login.login");
     }
 
     /**
@@ -57,7 +57,7 @@ class UserController
 
     function passwordReset(): View
     {
-        return View::render("out.user.password");
+        return View::render("out.password.password");
     }
 
 
@@ -69,7 +69,7 @@ class UserController
 
     function passwordConfirm(): View
     {
-        return View::render("out.user.password_confirm");
+        return View::render("out.password.password_confirm");
     }
 
     /**
